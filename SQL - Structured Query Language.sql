@@ -298,9 +298,6 @@ CREATE TABLE departments (
 	city varchar(100)
 );
 
-
-
-
 INSERT INTO departments
 VALUES (1, 'Computer Science');
 INSERT INTO departments
@@ -308,11 +305,8 @@ VALUES (2, 'Civil');
 INSERT INTO departments
 VALUES (3, 'Mechanical');
 
-
-
-
 create TABLE employees (
-	emp_id int primary key,
+    emp_id int primary key,
     name varchar(100) not null,
     email varchar(100) unique,
     salary decimal(10, 2) check(salary > 0),
@@ -327,6 +321,35 @@ create TABLE employees (
 show tables;
 desc departments;
 desc employees;
+
+
+
+Q: 
+a college want to maintain info about it's course and students.
+create a database name college_db,
+and create the following tables 
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100) UNIQUE NOT NULL,
+    duration INT CHECK (duration > 0),
+    fees DECIMAL(10, 2) CHECK (fees > 0)
+);
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    age INT CHECK (age >= 18),
+    city VARCHAR(50) DEFAULT 'Bangalore',
+    course_id INT,
+    
+    FOREIGN KEY (course_id)
+    REFERENCES courses(course_id)
+);
+
+
+
 
 
 
