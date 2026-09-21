@@ -129,7 +129,8 @@ VALUES
 (102, 'Rahul', 'rahul@gmail.com', 22, 'Vijayawada', 2),
 (103, 'Kiran', 'kiran@gmail.com', 20, DEFAULT, 3);
 
-
+-- select * from courses;
+-- select * from students;
 
 
 
