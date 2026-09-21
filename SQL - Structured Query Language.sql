@@ -350,6 +350,28 @@ CREATE TABLE students (
 
 
 
+ALTER table
+
+is used to modify an existing table structure you can
+add a column, modify a column, rename a column, drop a column, and add constraints
+- add column
+ synax: ALTER TABLE table_name
+	ADD column_name datatype
+
+- modifying the column
+ syntax: ALTER TABLE table_name
+	modify column_name datatype
+
+- rename the column
+syntax: ALTER TABLE table_name
+	rename column column_name to column_name
+
+- drop column 
+syntax: ALTER TABLE table_name
+	drop column column_name
+
+	
+
 
 
 

@@ -132,8 +132,33 @@ VALUES
 -- select * from courses;
 -- select * from students;
 
+-- alter
+-- add
 
+alter table students
+add phone_num int(100);.
+add address varchar(200);
 
+select * from students;
+
+-- modify
+
+alter table students
+modify age decimal(12, 2);
+select * from students;
+desc students;
+
+-- rename
+
+alter table students
+rename column phone_num to phone_number;
+desc students;
+
+-- drop 
+
+ALTER TABLE students
+drop column phone_number;
+desc students;
 
 
 
