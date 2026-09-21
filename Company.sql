@@ -118,6 +118,11 @@ VALUES
 (2, 'Python Full Stack', 5, 20000),
 (3, 'Data Science', 8, 35000);
 
+INSERT INTO courses
+(course_id, course_name, fees)
+values
+(4, 'Python', 40000);
+
 INSERT INTO students
 VALUES
 (101, 'Arjun', 'arjun@gmail.com', 21, 'Guntur', 1),
