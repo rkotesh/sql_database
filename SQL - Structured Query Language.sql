@@ -1,0 +1,335 @@
+SQL - Structured Query Language
+
+things can be done by sql 
+- inserting data
+- retrieving data
+- modifying data
+- delete data
+- manage data
+
+DBMS - Database Management System
+
+a software which is used to manage, manipulate and create the database 
+ex: 
+- Oracle r-dbms
+- MySQL
+- db2
+- sql server
+- mongodb
+
+MySQL
+ is an open source database product that uses sql to organize the data.
+the raw facts which describes the attributes(properties) of an entity(object) 
+data can be valid or invalid based on the situation 
+
+ex: 
+College - database name
+
+student(entity)
+id - attributes
+name - attributes
+age - attributes
+
+Query Language :
+
+is used to communicate with the database system software.
+the dbms software may have any of the following model for storing the data:
+
+1. hierarchical model - fetching data is easy
+	it is the first model, developed by dbms developers,
+it organizes the data in hierarchical tree like structure,
+the tree starts from root then it expands in the tree form.
+
+advantage:
+- it is simple & fast to transfers to a tree like structures 
+- any change in parent node is automatically reflected in the child node,
+so the integrity of the data is maintain.
+
+disadvantage:
+- if a parent node is deleted the child node is automatically deleted or relationship will be destroyed.
+- complex relationship are not supported.
+
+
+ex:
+
+	   shoe
+	/	\
+    women	   Men
+    /   \       /       \
+high   Normal	running  formal shoe
+		shoe	
+heels	shoe	
+
+	
+2. Network model
+	this model is same as or an extension of hierarchical model, in this model all the nodes are connected to more parent nodes.
+in simple - this model is same as the hierarchical model, the only difference is that a record can have more parent.
+it replaces the hierarchical model, i.e tree structure with a graph.
+
+advantage:
+- data can be accessed faster than hierarchical model, is because of all the nodes are interconnected and their can be more than one path to reach a particular node.
+
+disadvantage:
+- a more and more relationship needed to be handled and the system might get complex, so the user must have detailed knowledge  of work of the model.
+
+ex:
+
+		College
+	/	|	|	\
+	CSE	EEE	ECE	CSM
+	\	|	|	/
+		Student
+
+
+Relational Database
+
+this model was developed by "ffcod", in this model data will be stored in terms of row & column
+ex: table
+
+RDBMS:
+
+stands for relational database management system 
+- a type of dbms system software which stores the data using relational mode is known as rdbms.
+
+Table : is a logical structure which contains column row and cell.
+Column : it represents the attributes of an entity.
+
+
+SQL - Structured Query Language
+
+IBM developed the relational model based on dbms which was known as system arc, then they developed a language to interact with system arc which is known as seql - structured English query language developed in 1970' by IBM researchers & their need was Raymon, boycs and Donald, Champlin.
+
+Types of statements:
+
+1. DDL - data definition language 
+this language is used to define the table 
+- create
+  the statement is used to create the data in the database 
+- rename 
+  is used to change the name of the table(sometimes is used to change column name too)
+- truncate
+  is used to delete all the records and data from the table but the table structure remains same.
+- drop
+  is used to delete all the records and data from the table and database,
+even the table structure or the database will be deleted or destroyed.
+
+
+
+SQL Constraints:
+
+are the rule applied to the column in a database to control the type of the data that can be stored and maintain data accuracy.
+
+PRIMARY KEY:
+- is a column or a combination of columns that uniquely identify each record in a table
+- cannot contain null
+- cannot contain duplicate value
+- a table can have only one primary key 
+- it can contains one or more columns 
+ex: 
+
+CREATE TABLE students (
+	student-id INT PRIMARY KEY,
+	name VARCHAR(100),
+	age INT
+);
+
+
+FOREIGN KEY:
+
+is a column that create a relationship between two tables it usually refers to primary key of another table.
+ex:
+
+CREATE TABLE departments (
+ department_id INT PRIMARY key,
+ department_name VARCHAR(100)
+);
+
+CREATE TABLE students (
+ student_id INT PRIMARY KEY,
+ name VARCHAR(100),
+ department_id INT.
+ 
+ FOREIGN KEY (department_id)
+ REFERENCES departments(department_id)
+);
+
+
+NOT NULL:
+
+ensures that the column must have a value. It prevents the column from containing a null value.
+ex:
+CREATE DATABASE CIET
+use CIET
+CREATE TABLE employees (
+ employee_id INT PRIMARY KEY,
+ name VARCHAR(100) NOT NULL,
+ salary DECIMAL(10, 2)
+);
+
+INSERT INTO employees 
+VALUES (101, "ram", 50000);
+INSERT INTO employees
+VALUES (102, NULL, 345000);
+
+
+UNIQUE:
+
+ensures that the duplicate values are not allowed in the column.
+ex:
+
+CREATE TABLE users (
+ user_id INT PRIMARY KEY,
+ name VARCHAR(100) UNIQUE,
+ email VARCHAR(100) UNIQUE
+);
+
+INSERT INTO users
+VALUES (1, 'ram', ram@gmail.com);
+
+INSERT INTO users
+VALUES (2, 'ramkotesh', rkotesh@gmail.com);
+
+INSERT INTO users
+VALUES (3, 'nari', nari@gmail.com);
+
+INSERT INTO users
+VALUES (2, 'ramkotesh', rkotesh@gmail.com);
+
+
+
+
+Difference Between PRIMARY KEY AND UNIQUE:
+
+PRIMARY KEY: 
+- a primary key unify a identifier in a row 
+- cannot contain null 
+- one primary key per table 
+
+UNIQUE: 
+- prevent duplicate values 
+- null handling depends on dbms 
+- multiple unique constraints possible 
+
+
+
+Default:
+
+it automatically provides a value when the user does not provide a value during insertion.
+ex:
+
+CREATE TABLE employees(
+ employee_id INT PRIMARY KEY,
+ name VARCHAR(100),
+ city VARCHAR(50) DEFAULT 'Banglore'
+);
+INSERT INTO employees(employee_id, name)
+VALUES(10, 'Ram');
+
+
+Check:
+ensures that the value inserted into the column satisfy a specific condition.
+
+ex:
+
+CREATE TABLE students(
+ name VARCHAR(100),
+ age INT CHECK(AGE >= 18)
+);
+INSERT INTO students
+VALUES (101, 'Ram', 20);
+INSERT INTO students
+VALUES (102, 'Narendra', 15);
+
+
+
+SQL DATATYPES
+
+datatypes in sql defines what kind of value can be stored in a column of a table 
+
+1. int - stores the whole numbers without decimal numbers 
+
+Datatype	Storage	Signed Range
+TINY INT	1 byte	-128 - 127
+SMALL INT 	2 bytes	-32769 - 32767
+MEDIUM INT 	3 bytes	-8388608 -8388607
+INT 		4 bytes	-2147483648 - 2147483647
+BIGINT		8 bytes	-922337203684775808 - 9223372036854775807
+
+
+2. CHAR
+
+is used to store a fixed length string.
+ex:
+CREATE TABLE users(
+ gender CHAR(1),
+ country_code CHAR(2)
+);
+
+INSERT INTO users
+VALUES ('M', 'IN');
+
+
+Q: 
+create a sql database for an org that stores dept and emp info. the database must demonstrate the sql constraints 
+- primary key
+- foreign key
+- not null
+- unique
+- default
+- check
+create two tables 
+- departments -> should contain emp_id, emp_name, email, salary, city, dept_id
+apply the appropriate constraints and insert the valid department record.
+- employees
+
+
+
+DESCRIPTION - desc 
+
+USE company_db;
+
+CREATE TABLE departments (
+	dept_id INT PRIMARY KEY,
+	dept_name varchar(100) UNIQUE NOT NULL,
+	emp_id INT PRIMARY KEY,
+	emp_name varchar(100) UNIQUE NOT NULL,
+	email varchar(100) UNIQUE,
+	salary INT,
+	city varchar(100)
+);
+
+
+
+
+INSERT INTO departments
+VALUES (1, 'Computer Science');
+INSERT INTO departments
+VALUES (2, 'Civil');
+INSERT INTO departments
+VALUES (3, 'Mechanical');
+
+
+
+
+create TABLE employees (
+	emp_id int primary key,
+    name varchar(100) not null,
+    email varchar(100) unique,
+    salary decimal(10, 2) check(salary > 0),
+    city varchar(50) default 'Bangalore',
+    dept_id int,
+    
+    foreign key(dept_id)
+    references departments(dept_id)
+);
+
+
+show tables;
+desc departments;
+desc employees;
+
+
+
+
+
+
