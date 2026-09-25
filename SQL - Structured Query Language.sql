@@ -370,9 +370,31 @@ syntax: ALTER TABLE table_name
 syntax: ALTER TABLE table_name
 	drop column column_name
 
-	
 
+Joints
 
+a join in sql is used to combine rows, from two or more tables based on a related column between them.
+syntax:
+SELECT column_list 
+FROM table1 
+JOIN table2 
+ON table1.column_name = table2.column_name;
+
+1. Inner Join 
+	returns only the record that have matching values in both the tables
+
+2. Left Join
+	returns all the records from the left table, matching record from the right table and it returns null, if there is no match found.
+Write a query to compare dept_id from employee matching with the table depts.
+
+3. self join
+	a self join joins the table with itself.
+
+4. cross join
+	produces every possible combination of rows 
+
+5. multiple joins
+	using two or more join operations in a single sql query to retrieve data from multiple tables.
 
 
 
