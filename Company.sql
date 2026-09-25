@@ -304,8 +304,51 @@ INNER JOIN projects p
     ON ep.project_id = p.project_id;
 
     
+-- join - where
+select 
+	e.employee_name,
+	p.project_name,
+	p.budget
+from employees e
+join employee_projects ep
+	on e.employee_id = ep.employee_id
+join projects p
+on ep.project_id = p.project_id
+where p.budget >400000
 
+-- functions
 
+select upper(employee_name)
+from employees;
 
+select lower(location)
+from departments;
 
+select 
+    employee_name,
+    length(employee_name) AS name_length
+from employees;
 
+-- count() 
+select count(*) AS total_employees
+from employees;
+
+--sum()
+select sum(salary) AS total_salary
+from employees;
+
+--avg()
+select avg(salary) AS average_salary
+from employees;
+
+-- max()
+select max(salary) AS highest_salary
+from employees;
+
+-- min()
+select min(salary) AS lowest_salary
+from employees;
+
+--round()
+select round(avg(salary), 2) AS average_salary
+from employees;

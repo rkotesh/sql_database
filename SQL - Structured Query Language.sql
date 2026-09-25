@@ -395,6 +395,166 @@ Write a query to compare dept_id from employee matching with the table depts.
 
 5. multiple joins
 	using two or more join operations in a single sql query to retrieve data from multiple tables.
+6. join - where
+	is used when we want to combine data from two or more tables using a join and then filter the results rows using the where condition.
+
+
+Q:
+Write a query to display employees and their departments the hr department want to know which department each employee belongs to display employee name and department name. 
+
+-- SELECT 
+--     e.employee_name, 
+--     d.department_name
+-- FROM 
+--     employees e
+-- INNER JOIN 
+--     departments d ON e.department_id = d.department_id;
+
+Q:
+Write a query to display employee, salary and dept. management wants a report showing each employees salary along with thier dept.
+
+select 
+	e.employee_name,
+    e.salary,
+    d.department_name
+from 
+	employees e
+JOIN departments d
+ON e.department_id = d.department_id;
+
+Q: 
+find the employees walking in IT, the it dept wants list of all employees working in it.
+
+SELECT 
+	e.employee_name, 
+    d.department_name
+FROM employees e
+JOIN departments d 
+ON e.department_id = d.department_id
+WHERE d.department_name = 'IT';
+
+Q:
+to display employees and then projects, the project manager wants to know which employee is assigned to which project on what date.
+SELECT 
+    e.employee_name,
+    p.project_name, 
+    ep.assigned_date
+FROM employees e
+JOIN employee_projects ep
+	ON e.employee_id = ep.employee_id
+JOIN projects p 
+	ON ep.project_id = p.project_id;
+
+Q:
+find the employees working on the e-commerce application, management wants to know which employees are working on the e commerce application.
+SELECT 
+    e.employee_name,
+    p.project_name
+FROM employees e
+JOIN employee_projects ep 
+	ON e.employee_id = ep.employee_id
+JOIN projects p
+	ON ep.project_id = p.project_id
+WHERE p.project_name = 'E-Commerce Application';
+
+
+Q:
+find the employee working on banking application, the banking project manager want to see all the employees assigned to the banking application and the assigned date.
+
+SELECT 
+    e.employee_name,
+    p.project_name,
+    ep.assigned_date
+FROM employees e
+JOIN employee_projects ep 
+	ON e.employee_id = ep.employee_id
+JOIN projects p 
+	ON ep.project_id = p.project_id
+WHERE p.project_name = 'Banking Application';
+
+
+Views:
+	is a virtual table created using sql query, it doesnot normally store the actual result.
+
+View + where:
+	
+
+view + join:
+
+Functions:
+
+they are 2 imp types
+1. built in
+	- count()
+	- sub()
+	- average()
+	- math()
+	- upper()
+	- lower()
+	- max()
+	- min()
+	- round()
+
+2. user-defined -> using create() 
+
+String functions
+	- upper()
+	
+Aggregate functions:
+	1. count()
+	2. sum()
+	3. average - avg()
+	4. max()
+	5. min()
+	6. round()
+Q:
+a query and create a view for employee details, the hr team frequently needs emp_name, email, salary, dept_name. create a view so they  don't have to write the join query every time.
+
+create view employee_details AS
+select 
+	e.employee_id,
+    e.employee_name,
+    e.email,
+    e.salary,
+    d.department_name
+from employees e
+join departments d
+	on e.department_id = d.department_id;
+select * from employee_details;
+
+
+Q:
+view for an it employees, the it dept frequently needs a list of its employees.
+
+create view it_employees AS
+select 
+	e.employee_id,
+    e.employee_name,
+    e.email,
+    e.salary,
+    d.department_name
+from employees e
+join departments d
+	on e.department_id = d.department_id;
+select * from employee_details
+where department_name = 'IT';
+
+
+Q:
+a query for view for higher salary employee management frequently want to see employees earning more than 60000.
+
+create view highest_salary_employees AS
+select 
+	e.employee_id, 
+	e.email,
+	e.salary,
+	d.department_name
+from employees e
+join departments d
+	on e.department_id = d.department_id
+where e.salary > 60000;
+select * from highest_salary_employees;
+
 
 
 
