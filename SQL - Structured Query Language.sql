@@ -556,6 +556,168 @@ where e.salary > 60000;
 select * from highest_salary_employees;
 
 
+view + join & groupby :
+	
+Modifier View:
+
+function in sql :- is a stored program that performs a specific operation and must be return a single value.
+stored procedures :- is a set of sql statements stored inside the database that executes whenever require 
+syntax: 
+	DELIMITER //
+	CREATE FUNCTION function_name(parameter datatype)
+	RETURNS datatype
+	DETERMINISTIC
+	BEGIN
+		-- STATEMENTS
+	RETURN value;
+	END //
+	DELIMITER;
+
+
+user-defined function :- is a resuable sql program that accepts input and returns one value.
+	Q: create a function to calculate annual salary.
+	-- delimiter
+DELIMITER //
+
+CREATE FUNCTION annual_salary(monthly_salary DECIMAL(10, 2))
+RETURNS DECIMAL(12, 2)
+DETERMINISTIC
+BEGIN
+	RETURN monthly_salary * 12;
+END //
+
+DELIMITER ;
+select 
+	employee_name,
+    salary,
+    annual_salary(salary) as yearly_salary
+from employees;
+
+
+function with if condition : 
+	
+simple store procedure : is a pre-combined collection of sql statements stored inside the database unlike a function a procedure doesnot have to return a single value it can insert, update, delete, select, accept parameters, in function.
+	
+procedure with in - parameter :- 
+Q: find employees from a particular department.
+DELIMITER //
+
+CREATE PROCEDURE get_employees_by_departments(
+    IN dept_id INT
+)
+BEGIN
+    SELECT
+        employee_id,
+        employee_name,
+        salary,
+        department_id
+    FROM employees
+    WHERE department_id = dept_id;
+END //
+
+DELIMITER ;
+
+CALL get_employees_by_departments(1);
+
+
+Q:
+Procedure to insert employee.
+
+-- DELIMITER //
+
+-- CREATE PROCEDURE add_employee(
+-- 	in emp_name varchar(100),
+-- 	in emp_email varchar(100),
+--     in emp_salary decimal(10, 2),
+--     in dept_id int,
+--     in join_date date
+-- )
+-- begin
+-- 	insert into employees
+--     (
+-- 		employee_name,
+--         email,
+--         salary,
+--         department_id,
+--         joining_date
+-- 	)
+--     values
+--     (
+--     emp_name,
+--     emp_email,
+--     emp_salary,
+--     dept_id,
+--     join_date
+-- 	);
+-- end //
+
+-- delimiter ;
+-- call add_employee(
+-- 	'vijay',
+--     'vijay@gmail.com',
+--     65000,
+--     1,
+--     '2026-04-19'
+-- );
+
+
+Procedure to update salary.
+
+DELIMITER //
+CREATE PROCEDURE update_employee_salary(
+	in emp_id int,
+    in new_salary decimal(10, 2)
+)
+begin
+	update employees
+    set salary = new_salary
+    where employee_id = emp_id;
+END //
+delimiter ;
+call update_employee_salary(2, 700000);
+
+select * from employees;	
+
+
+Procedure to delete employee
+
+
+-- procedure to delete employee
+DELIMITER //
+
+CREATE PROCEDURE delete_employee(
+    IN emp_id INT
+)
+BEGIN
+    DELETE FROM employees 
+    WHERE employee_id = emp_id;
+END //
+
+DELIMITER ;
+
+
+Stored procedure with if: find whether an employee earns a high salary 
+
+jdbc architecture 
+- java database connectivity -> allows java application to communicate with the database, and the basic flow.
+
+Java project flow
+
+java application
+	|
+jdbc api
+	|
+mysql jdbc driver
+	|
+mysql server
+	|
+database
+
+
+
+
+
+
 
 
 

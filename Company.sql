@@ -352,3 +352,21 @@ from employees;
 --round()
 select round(avg(salary), 2) AS average_salary
 from employees;
+
+
+
+view + join & groupby :
+
+create view department_salary_summary as
+select
+	d.department_name,
+    count(e.employee_id) as employee_count,
+    avg(e.salary) as average_salary,
+    max(e.salary) as highest_salary,
+    min(e.salary) as lowest_salary
+from departments d
+left join employees e
+on d.department_id = e.department_id
+group by d.department_id, d.department_name;
+
+select * from department_salary_summary;
